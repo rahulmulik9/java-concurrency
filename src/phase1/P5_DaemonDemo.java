@@ -24,7 +24,7 @@ public class P5_DaemonDemo {
 
         // Step 1: main sleeps for 3000 ms.
         // The ticker (daemon) keeps printing in the meantime.
-        //so 3000/300 => 10 . so demon thread tick 10 times
+        //so 3000/300 => about 10 . so demon thread tick about 10 times
         Thread.sleep(3000);
 
         // Step 2: main wakes up and prints "main exiting".
