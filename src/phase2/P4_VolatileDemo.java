@@ -9,6 +9,7 @@ volatile does not make counter++ atomic. It fixes visibility only.*/
 public class P4_VolatileDemo {
 
     // volatile makes the change visible to the worker thread
+    //static boolean running = true;
     static volatile boolean running = true;
 
     public static void main(String[] args) throws InterruptedException {
