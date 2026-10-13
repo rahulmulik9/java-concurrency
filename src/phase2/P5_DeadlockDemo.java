@@ -1,5 +1,28 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - Deadlock: two or more threads wait for each other forever, so none can continue.
+ *
+ * MAIN RULES
+ * - Needs two locks taken in opposite order
+ *   t1 takes A then wants B, t2 takes B then wants A
+ * - Each thread holds one lock and waits for the other, nobody releases
+ *
+ * KEY POINT
+ * - The sleep() makes sure both threads hold their first lock before asking for the second,
+ *   so the deadlock happens every time.
+ *
+ * GOAL
+ * - Build a deadlock on purpose.
+ * - Expected: "t1 holds lockA", "t2 holds lockB", "t1 wants lockB", "t2 wants lockA", then program hangs
+ *   (join never returns, "main thread done" never prints)
+ * - Fixed version: take locks in the same order everywhere (see P9_DiningPhilosophersDemo)
+ *
+ * RELATED PROBLEMS
+ * - Deadlock: threads blocked forever, waiting for each other
+ * - Livelock: threads keep reacting to each other but make no progress
+ * - Starvation: one thread never gets a turn because others always win
+ */
 /*
 * Deadlock: two or more threads wait for each other forever, so none can continue.
 It needs two locks and opposite order:

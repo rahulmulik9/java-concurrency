@@ -1,5 +1,23 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - Three different "not running" states look similar but have different causes.
+ *
+ * MAIN RULES
+ * - BLOCKED: waiting to enter a synchronized block someone else holds
+ * - WAITING: waiting with no time limit (join(), wait())
+ * - TIMED_WAITING: waiting with a time limit (sleep(ms), join(ms))
+ *
+ * KEY POINT
+ * - To get a reliable BLOCKED, main must hold the lock BEFORE starting the blocked thread.
+ *   Otherwise the blocked thread may grab the lock and finish first (timing dependent).
+ *
+ * GOAL
+ * - Put 3 threads into 3 different states and print them.
+ * - Expected: sleeper TIMED_WAITING, waiter WAITING, blocked BLOCKED,
+ *   then "blocked thread got the lock"
+ * - Run only one way at a time (a thread can be started only once)
+ */
 public class P4_BlockedWaitingDemo {
     private static final Object lock = new Object();
 

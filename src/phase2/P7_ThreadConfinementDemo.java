@@ -1,5 +1,22 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - Thread confinement: keep data inside one thread so no sharing, no locking needed.
+ *
+ * MAIN RULES
+ * - Local variables live on the thread's own stack, other threads cannot see them
+ * - Count locally, then combine the results once at the end
+ * - Only the short final merge needs a lock
+ *
+ * KEY POINT
+ * - Best way to avoid race conditions is to not share the data at all.
+ *
+ * GOAL
+ * - Example 1: both threads update one shared counter (no lock).
+ * - Example 2: each thread counts locally, then adds to the total under one short lock.
+ * - Expected: Example 1 result less than 200000 (lost updates)
+ *   Example 2 result always 200000
+ */
 public class P7_ThreadConfinementDemo {
 
     // shared by both threads, no protection

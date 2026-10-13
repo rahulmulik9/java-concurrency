@@ -1,5 +1,24 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - Producer-consumer: one thread adds items to a shared buffer, another removes them.
+ *
+ * MAIN RULES
+ * - One lock protects the buffer
+ * - Producer waits when buffer is full, consumer waits when buffer is empty
+ * - After every change call notifyAll() to wake the other side
+ * - Always use while (not if) to re-check the condition after waking
+ *
+ * KEY POINT
+ * - Consumer sleeps OUTSIDE the synchronized block.
+ *   Sleeping inside would hold the lock and block the producer.
+ *
+ * GOAL
+ * - Producer puts 1 to 5, buffer capacity is 2, consumer is slower (300 ms per item).
+ * - Expected: producer fills the buffer, prints "buffer full, producer waiting",
+ *   consumer takes items in order 1 to 5, then "main thread done"
+ *   (exact line order varies)
+ */
 import java.util.LinkedList;
 import java.util.Queue;
 

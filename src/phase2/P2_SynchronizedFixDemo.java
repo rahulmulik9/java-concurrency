@@ -1,5 +1,22 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - synchronized lets only one thread at a time run a block of code.
+ *
+ * MAIN RULES
+ * - Both threads must lock the SAME object
+ * - Lock is released automatically when the block ends
+ * - It gives both atomicity and visibility
+ *
+ * KEY POINT
+ * - Locks on different objects do not protect each other.
+ *   The shared lock object is what makes it work.
+ *
+ * GOAL
+ * - Same program as P1_RaceConditionDemo, but counter++ is inside synchronized (lock).
+ * - Expected: RESULT is always 200000, "CHECK: correct -> no lost updates"
+ * - Broken version: P1_RaceConditionDemo
+ */
 public class P2_SynchronizedFixDemo {
 
     static int counter = 0;

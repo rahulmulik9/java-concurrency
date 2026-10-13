@@ -1,5 +1,22 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - A daemon thread is a background helper. The JVM does not wait for it.
+ *
+ * MAIN RULES
+ * - JVM exits when all NON-daemon threads are finished
+ * - setDaemon(true) must be called BEFORE start()
+ * - Daemon threads are killed abruptly when the JVM exits
+ *
+ * KEY POINT
+ * - A non-daemon thread with an endless loop keeps the JVM alive forever,
+ *   even after main ends.
+ *
+ * GOAL
+ * - Ticker prints every 300 ms while main sleeps 3 seconds.
+ * - Expected with setDaemon(true): about 10 ticks, "main exiting", program ends
+ * - Expected with setDaemon(false): ticks continue forever after main exits
+ */
 public class P5_DaemonDemo {
     public static void main(String[] args) throws InterruptedException {
 

@@ -1,4 +1,27 @@
 package phase1;
+/*
+ * CONCEPT
+ * - An exception that escapes run() is "uncaught". It kills only that thread.
+ *
+ * MAIN RULES
+ * - Exception can be caught only on the thread where it happens
+ * - try/catch around start() does NOT catch it (it happens later, on another thread)
+ * - UncaughtExceptionHandler runs on the dying thread, just before it ends
+ * - Per-thread handler wins over the default handler
+ * - A handler does not rescue the thread, it still ends as TERMINATED
+ *
+ * KEY POINT
+ * - Best fix is try/catch inside run(). Handlers are only a safety net.
+ *   Order: try/catch in run() -> per-thread handler -> default handler -> JVM stack trace
+ *
+ * GOAL
+ * - Part 1: no handler. Part 2: try/catch around start(). Part 3: per-thread handler.
+ *   Part 4: default handler.
+ * - Expected: Part 1 state TERMINATED (JVM prints stack trace), Part 2 caught = false,
+ *   Part 3 and Part 4 handlers print the error message
+ */
+
+
 
 /*
  * SUMMARY: Uncaught exceptions in threads

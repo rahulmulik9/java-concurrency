@@ -1,5 +1,24 @@
 package phase3;
-
+/*
+ * CONCEPT
+ * - Java (compiler, JIT, CPU) can run your instructions in a different order
+ *   than you wrote them, as long as a single thread cannot tell the difference.
+ *
+ * MAIN RULES
+ * - t1: x = 1; r1 = y   and   t2: y = 1; r2 = x
+ * - In written order, r1 = 0 and r2 = 0 together is impossible
+ * - With reordering (a read moving before a write), both can be 0
+ *
+ * KEY POINT
+ * - With only 100 runs you will almost never see it. Starting a thread is slow,
+ *   so t1 usually finishes before t2 starts.
+ *   To really see it, both threads must start at the same moment (CountDownLatch version).
+ *
+ * GOAL
+ * - Run the pair of threads 100 times and count how often r1 = 0 and r2 = 0.
+ * - Expected: usually 0 of 100 runs (reordering is real but very hard to catch here)
+ * - Fix: make x and y volatile, then r1 = 0 and r2 = 0 can never happen
+ */
 // runs = 100 is too small to see reordering
 // starting a thread is slow, so t1 usually finishes before t2 starts
 // to really see it, both threads must start at the same moment (CountDownLatch version)

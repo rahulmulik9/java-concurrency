@@ -1,5 +1,23 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - wait() and notifyAll() let one thread sleep until another says
+ *   "the condition you wait for has changed".
+ *
+ * MAIN RULES
+ * - wait(), notify(), notifyAll() must be called inside synchronized on the same lock
+ * - wait() releases the lock while waiting, and takes it back when woken
+ * - Always check the condition in a while loop, not if
+ *
+ * KEY POINT
+ * - while (not if) protects against spurious wakeups:
+ *   a thread can wake up even when nobody notified it.
+ *
+ * GOAL
+ * - Waiter waits for ready = true, setter sets it after 1 second and calls notifyAll().
+ * - Expected: "waiter is waiting", "setter changes ready to true, notifying",
+ *   "waiter got signal, continuing", "main thread done"
+ */
 public class P3_WaitNotifyDemo {
 
     static final Object lock = new Object();

@@ -2,7 +2,25 @@ package phase1;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * CONCEPT
+ * - Break it on purpose: see what goes wrong with start() twice and with no join().
+ *
+ * MAIN RULES
+ * - A Thread object can be started only once (second start() throws IllegalThreadStateException)
+ * - Without join(), main can finish before the workers
+ * - With join(), main waits for every worker
+ *
+ * KEY POINT
+ * - Worker output lines are interleaved and the order changes on every run,
+ *   but "main done (after join)" is always last.
+ *
+ * GOAL
+ * - Part 1: start() twice (commented line, uncomment to see the exception)
+ * - Part 2: 3 workers without join (commented block)
+ * - Part 3: 3 workers with join
+ * - Expected: each worker prints 1 to 5 (mixed order), then "main done (after join)" last
+ */
 public class P2_BreakIt_JoinUse {
     public static void main(String[] args) throws InterruptedException {
 

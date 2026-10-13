@@ -1,5 +1,20 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - Where you put start() and join() decides if work runs in parallel or one by one.
+ *
+ * MAIN RULES
+ * - start all threads first, then join all -> parallel
+ * - start + join inside the same loop -> sequential
+ * - join() always makes only the CALLER wait (here: main), never another worker
+ *
+ * KEY POINT
+ * - join() inside the start loop silently turns a parallel program into a serial one.
+ *
+ * GOAL
+ * - 4 workers each sleep 1 second, run in two ways and time them.
+ * - Expected: Example 1 about 1000 ms (parallel), Example 2 about 4000 ms (one after another)
+ */
 import java.util.ArrayList;
 import java.util.List;
 

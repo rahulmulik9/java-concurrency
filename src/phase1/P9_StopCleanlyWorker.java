@@ -1,5 +1,24 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - The correct way to stop a worker: handle BOTH cases of interrupt.
+ *   Busy case: flag is set. Sleeping case: InterruptedException is thrown.
+ *
+ * MAIN RULES
+ * - Check isInterrupted() in the loop condition
+ * - Catch InterruptedException, then restore the flag with interrupt()
+ * - Put cleanup in finally so it runs on every exit path
+ *
+ * KEY POINT
+ * - Swallowing InterruptedException (empty catch) hides the stop request
+ *   from the rest of the program.
+ *
+ * GOAL
+ * - Worker processes items (50 ms work + 300 ms sleep), main interrupts after 1 second.
+ * - Expected: items 0, 1, 2 processed, then
+ *   "interrupted while sleeping, flag restored", "cleanup done (flag = true)",
+ *   main prints worker state = TERMINATED
+ */
 public class P9_StopCleanlyWorker {
 
     static class Worker implements Runnable {

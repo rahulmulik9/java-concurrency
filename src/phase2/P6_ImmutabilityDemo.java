@@ -1,5 +1,24 @@
 package phase2;
-
+/*
+ * CONCEPT
+ * - An immutable object never changes after it is created, so it is always thread-safe.
+ *
+ * MAIN RULES
+ * - final class, final fields, set only in the constructor, no setters
+ * - To "change" it, create a new object and replace the reference
+ * - Make the shared reference volatile so readers see the new object
+ * - String and Integer are immutable, that is why they are safe to share
+ *
+ * KEY POINT
+ * - Reader must copy the reference ONCE (ImmutablePoint p = immutable)
+ *   and then use only p. Reading the field twice could give two different objects.
+ *
+ * GOAL
+ * - Example 1: mutable point, writer sets x then y, reader can see x new and y old.
+ * - Example 2: immutable point, whole object replaced in one step.
+ * - Expected: Example 1 may print a mismatch (a != b), timing dependent, not every run
+ *   Example 2 always prints "No mismatch found"
+ */
 /*
 An immutable object never changes after it is created.
 Rules for an immutable class:

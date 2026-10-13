@@ -1,5 +1,21 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - Thread priority (1 to 10) is a hint to the scheduler, not an order.
+ *
+ * MAIN RULES
+ * - MIN_PRIORITY = 1, NORM_PRIORITY = 5, MAX_PRIORITY = 10
+ * - The OS scheduler decides, and may ignore priorities
+ * - Both threads stay RUNNABLE while counting
+ *
+ * KEY POINT
+ * - Never depend on priority for correctness. Results differ by OS, JVM and CPU cores.
+ *
+ * GOAL
+ * - Two busy counters (LOW and HIGH) run for 5 seconds, then compare counts.
+ * - Expected: HIGH count is often larger, but this is NOT guaranteed
+ *   (with enough free cores the counts can be almost equal)
+ */
 public class P6_PriorityDemo {
 
     static class CountTask implements Runnable {

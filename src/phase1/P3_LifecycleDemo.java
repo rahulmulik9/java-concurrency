@@ -1,5 +1,21 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - A thread moves through states: NEW -> RUNNABLE -> TIMED_WAITING -> TERMINATED.
+ *
+ * MAIN RULES
+ * - NEW: created but start() not called
+ * - RUNNABLE: running or ready to run
+ * - TIMED_WAITING: inside sleep() or a timed wait/join
+ * - TERMINATED: run() has finished
+ *
+ * KEY POINT
+ * - getState() is only a snapshot. The state can change right after you read it.
+ *
+ * GOAL
+ * - Print worker state at 4 moments around a 500 ms sleep.
+ * - Expected: NEW, RUNNABLE (likely), TIMED_WAITING, TERMINATED
+ */
 public class P3_LifecycleDemo {
     public static void main(String[] args) throws InterruptedException {
         Thread t = new Thread(() -> {

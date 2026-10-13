@@ -1,5 +1,21 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - interrupt() does not stop a thread by force. It only sets a flag.
+ *
+ * MAIN RULES
+ * - A busy thread must check isInterrupted() itself
+ * - The worker decides when and how to stop
+ * - State is RUNNABLE while the loop runs, TERMINATED only after run() ends
+ *
+ * KEY POINT
+ * - A busy loop that never checks the flag can never be interrupted.
+ *
+ * GOAL
+ * - Worker counts in a loop until main interrupts it after 1 second.
+ * - Expected: "worker is interrupted : true", worker state RUNNABLE
+ *   (it is still running those print lines), then "main: done"
+ */
 public class P8_InterruptBusyDemo {
     public static void main(String[] args) throws InterruptedException {
 

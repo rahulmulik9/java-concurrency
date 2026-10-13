@@ -1,5 +1,22 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - interrupt() asks a thread to stop what it is doing.
+ *   If the thread is sleeping, sleep() throws InterruptedException.
+ *
+ * MAIN RULES
+ * - interrupt() on a sleeping/waiting thread wakes it immediately
+ * - The InterruptedException is thrown AND the interrupt flag is cleared
+ *
+ * KEY POINT
+ * - Inside the catch block, isInterrupted() prints false.
+ *   If you want others to know, restore it with Thread.currentThread().interrupt().
+ *
+ * GOAL
+ * - Worker sleeps 10 seconds, main interrupts it after 2 seconds.
+ * - Expected: "interrupted while sleeping", "flag after exception = false",
+ *   worker finishes after about 2 seconds (not 10)
+ */
 public class P7_InterruptSleepDemo {
     public static void main(String[] args) throws InterruptedException {
 

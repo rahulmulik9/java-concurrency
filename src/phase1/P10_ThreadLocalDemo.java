@@ -1,5 +1,23 @@
 package phase1;
-
+/*
+ * CONCEPT
+ * - ThreadLocal gives every thread its own private copy of a variable.
+ *
+ * MAIN RULES
+ * - Normal static field: one box shared by all threads
+ * - ThreadLocal: one box PER thread, other threads cannot see it
+ * - withInitial() sets the starting value for each thread
+ *
+ * KEY POINT
+ * - Shared field loses values when threads overwrite each other.
+ *   ThreadLocal never does, because nothing is shared.
+ *
+ * GOAL
+ * - 3 workers write their name into both boxes, sleep, then read back.
+ * - Expected: sharedName = same value (last writer) for all workers,
+ *   privateName = each worker's own name
+ * - main: sharedName = last writer's name, privateName = "nobody" (main never set it)
+ */
 public class P10_ThreadLocalDemo {
 
     // ONE box shared by all threads
