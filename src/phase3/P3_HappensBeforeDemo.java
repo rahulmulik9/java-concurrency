@@ -28,15 +28,15 @@ public class P3_HappensBeforeDemo {
     static int data = 0;
 
     // volatile write/read creates the happens-before link
-    static volatile boolean ready = false;
+    static volatile boolean permissionGranted = false;
 
     public static void main(String[] args) throws InterruptedException {
         Thread reader = new Thread(() -> {
             System.out.println("reader: waiting for ready");
-            while (!ready) {
+            while (!permissionGranted) {
                 // spin until main sets ready
             }
-            System.out.println("reader: data = " + data);
+            System.out.println("reader data = " + data);
         });
 
         reader.start();
@@ -44,7 +44,7 @@ public class P3_HappensBeforeDemo {
 
         // order matters: data first, then the volatile write
         data = 42;
-        ready = true;
+        permissionGranted = true;
         System.out.println("main: data written, ready set");
 
         // join: everything reader did is visible to main
