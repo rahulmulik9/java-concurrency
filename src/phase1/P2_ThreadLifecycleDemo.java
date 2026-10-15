@@ -1,4 +1,4 @@
-package Phase1;
+package phase1;
 
 /*
  * WHAT WE ARE GOING TO LEARN IN THIS STEP:
