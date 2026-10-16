@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  *   Create a CountDownLatch(3). Each worker calls countDown() when it is done.
  *   main calls await(). It continues exactly when the counter reaches 0.
  */
-public class P26_CountDownLatchDemo {
+public class P26_a_CountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
 
