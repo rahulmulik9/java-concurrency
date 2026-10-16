@@ -73,6 +73,7 @@ public class P26_CountDownLatchDemo {
                     Thread.currentThread().interrupt();
                 } finally {
                     done.countDown();                  // counter - 1, always in finally
+                    System.out.println("Section 2 worker " + id + " done, counter after = " + done.getCount());
                 }
             });
         }
